@@ -12,35 +12,35 @@ namespace DiyorMarketApi.Services
                 Id = 1,
                 Name = "Coca-Cola",
                 Price = 2500,
-                Category = "Drinks"
+                CategoryId = 1
             },
             new Product
             {
                 Id = 2,
                 Name = "Fanta",
                 Price = 2500,
-                Category = "Drinks"
+                CategoryId = 1
             },
             new Product
             {
                 Id = 3,
                 Name = "Sprite",
                 Price = 2450,
-                Category = "Drinks"
+                CategoryId = 1
             },
             new Product
             {
                 Id = 4,
                 Name = "Snikers",
                 Price = 3500,
-                Category = "Chocolate"
+                CategoryId = 2
             },
             new Product
             {
                 Id = 5,
                 Name = "Mars",
                 Price = 3200,
-                Category = "Chocolate"
+                CategoryId = 2
             },
         };
 
@@ -64,7 +64,7 @@ namespace DiyorMarketApi.Services
 
             productToUpdate.Name = product.Name;
             productToUpdate.Price = product.Price;
-            productToUpdate.Category = product.Category;
+            productToUpdate.CategoryId = product.CategoryId;
         }
 
         public static void Delete(int id)
