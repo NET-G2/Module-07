@@ -14,8 +14,16 @@ namespace DiyorMarketApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Product>> Get()
         {
-            return ProductsService.GetProducts();
+            try
+            {
+                return ProductsService.GetProducts();
+            }
+            catch (Exception ex)
+            {
+                return Ok($"Not found exception..{ex.Message}");
+            }
         }
+
 
         // GET api/<ProductsController>/5
         [HttpGet("{id}")]
