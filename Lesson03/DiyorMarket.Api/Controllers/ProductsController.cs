@@ -34,10 +34,14 @@ namespace DiyorMarketApi.Controllers
 
         // POST api/<ProductsController>
         [HttpPost]
-        public ActionResult Post([FromBody] Product product)
+        public ActionResult Post(Product product)
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
                 ProductsService.Create(product);
 
                 return StatusCode(201, product);
@@ -69,6 +73,7 @@ namespace DiyorMarketApi.Controllers
 
             var productToPatch = new Product()
             {
+                Id = product.Id,
                 Name = product.Name,
                 Price = product.Price,
                 CategoryId = product.CategoryId,
@@ -76,11 +81,21 @@ namespace DiyorMarketApi.Controllers
 
             jsonPatch.ApplyTo(productToPatch, ModelState);
 
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            if (!TryValidateModel(productToPatch))
+            {
+                return BadRequest();
+            }
+
             product.Name = productToPatch.Name;
             product.Price = productToPatch.Price;
             product.CategoryId = productToPatch.CategoryId;
 
-            return NoContent();
+            return Ok(productToPatch);
         }
 
         // DELETE api/<ProductsController>/5
