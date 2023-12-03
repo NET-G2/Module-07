@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DiyorMarket.Api
 {
@@ -11,6 +12,7 @@ namespace DiyorMarket.Api
             // Add services to the container.
 
             builder.Services.AddControllers()
+                .AddNewtonsoftJson()
                 .AddXmlSerializerFormatters();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
