@@ -1,5 +1,5 @@
-﻿using DiyorMarketApi.Models;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
+using DiyorMarketApi.Models;
 
 namespace DiyorMarketApi.Services
 {

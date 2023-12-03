@@ -1,5 +1,4 @@
-﻿using System.Net.Mime;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 
 namespace DiyorMarketApi.Controllers
@@ -20,12 +19,12 @@ namespace DiyorMarketApi.Controllers
         [HttpGet("{id}")]
         public ActionResult GetFileById(int id)
         {
-            string fileName = id == 1 ?  "C:\\Users\\VICTUS\\OneDrive\\Documents\\GitHub\\Module-07\\Lesson01\\DiyorMarketApi\\NabiddinovAbrorRezyume.pdf" : "text.txt";
+            string fileName = id == 1 ? "C:\\Users\\VICTUS\\OneDrive\\Documents\\GitHub\\Module-07\\Lesson01\\DiyorMarketApi\\NabiddinovAbrorRezyume.pdf" : "Vazifalar.txt";
             if (!System.IO.File.Exists(fileName))
             {
                 return NotFound();
             }
-            if(!_fileExtensionContentTypeProvider.TryGetContentType(fileName, out var contentType))
+            if (!_fileExtensionContentTypeProvider.TryGetContentType(fileName, out var contentType))
             {
                 contentType = "application/octet-stauts";
             }

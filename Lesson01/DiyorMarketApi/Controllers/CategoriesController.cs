@@ -41,7 +41,7 @@ namespace DiyorMarketApi.Controllers
 
         // PUT api/<CategoriesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Category category )
+        public void Put(int id, [FromBody] Category category)
         {
             CategoriesService.Update(category);
         }

@@ -1,5 +1,4 @@
 ﻿using DiyorMarketApi.Models;
-using System.Linq;
 
 namespace DiyorMarketApi.Services
 {

@@ -30,7 +30,7 @@ namespace DiyorMarketApi.Controllers
         public ActionResult<Product> Get(int id)
         {
             var product = ProductsService.GetProduct(id);
-            
+
             if (product is null)
             {
                 return NotFound($"Product with id: {id} does not exist.");
