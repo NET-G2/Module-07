@@ -32,7 +32,7 @@ namespace DiyorMarket.Extensions
         public static IServiceCollection ConfigureDatabaseContext(this IServiceCollection services)
         {
             services.AddDbContext<DiyorMarketDbContext>(options =>
-                options.UseSqlServer(""));
+                options.UseSqlServer("DiyorMarketConnectionString"));
 
             return services;
         }
