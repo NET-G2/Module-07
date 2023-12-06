@@ -1,3 +1,4 @@
+using DiyorMarket.Api.Interfaces;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,6 +19,13 @@ namespace DiyorMarket.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
+
+            builder.Services.AddScoped<IProductRepository, ProductsRepository>();
+            builder.Services.AddScoped<IEmailService, EmailService>();
+            builder.Services.AddScoped<ISmsService, SmsNotifictionService>();
+            builder.Services.AddScoped<IProductService, ProductsService>();
+
+            builder.Services.AddTransient<IProductService, ProductsService>();
 
             var app = builder.Build();
 

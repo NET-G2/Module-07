@@ -1,7 +1,8 @@
-﻿using DiyorMarketApi.Models;
-using DiyorMarketApi.Services;
+﻿using DiyorMarket.Api.Interfaces;
+using DiyorMarketApi.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using ProductsService = DiyorMarket.Api.ProductsService;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,6 +12,13 @@ namespace DiyorMarketApi.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
+        private readonly IProductService _service;
+
+        public ProductsController(IProductService productService)
+        {
+            _service = productService;
+        }
+
         // GET: api/<ProductsController>
         [HttpGet]
         public ActionResult<IEnumerable<Product>> Get()
