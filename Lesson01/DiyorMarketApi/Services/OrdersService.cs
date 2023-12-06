@@ -2,71 +2,71 @@
 
 namespace DiyorMarketApi.Services
 {
-    public class SalesService
+    public class OrdersService
     {
-        private static List<Sale> Sales = new List<Sale>
+        private static List<Order> Sales = new List<Order>
         {
 
-            new Sale
+            new Order
             {
                 Id = 1,
-                SaleDate = DateTime.Now.AddHours(-0.5),
+                OrderDate = DateTime.Now.AddHours(-0.5),
                 CustomerId = 1
             },
-            new Sale
+            new Order
             {
                 Id = 2,
-                SaleDate = DateTime.Now.AddHours(-1),
+                OrderDate = DateTime.Now.AddHours(-1),
                 CustomerId = 4
             },
-            new Sale
+            new Order
             {
                 Id = 3,
-                SaleDate = DateTime.Now.AddHours(-2),
+                OrderDate = DateTime.Now.AddHours(-2),
                 CustomerId = 3
             },
-            new Sale
+            new Order
             {
                 Id = 4,
-                SaleDate = DateTime.Now.AddHours(-3),
+                OrderDate = DateTime.Now.AddHours(-3),
                 CustomerId = 2
             },
-            new Sale
+            new Order
             {
                 Id = 5,
-                SaleDate = DateTime.Now.AddHours(-4),
+                OrderDate = DateTime.Now.AddHours(-4),
                 CustomerId = 1
             },
-            new Sale
+            new Order
             {
                 Id = 6,
-                SaleDate = DateTime.Now.AddHours(-3.5),
+                OrderDate = DateTime.Now.AddHours(-3.5),
                 CustomerId = 3
             },
-            new Sale
+            new Order
             {
                 Id = 7,
-                SaleDate = DateTime.Now.AddHours(-1.5),
+                OrderDate = DateTime.Now.AddHours(-1.5),
                 CustomerId = 2
             },
-            new Sale
+            new Order
             {
                 Id = 8,
-                SaleDate = DateTime.Now.AddHours(-5.5),
+                OrderDate = DateTime.Now.AddHours(-5.5),
                 CustomerId = 8
             },
         };
 
-        public static List<Sale> GetSales()
+        public static List<Order> GetSales()
             => Sales;
 
-        public static Sale? GetSale(int id)
+        public static Order? GetSale(int id)
             => Sales.FirstOrDefault(x => x.Id == id);
 
-        public static void Create(Sale sale)
+        public static void Create(Order sale)
             => Sales.Add(sale);
 
-        public static void Update(Sale sale)
+        public static void Update(Order sale)
         {
             var saleToUpdate = Sales.FirstOrDefault(x => x.Id == sale.Id);
 
@@ -75,7 +75,7 @@ namespace DiyorMarketApi.Services
                 return;
             }
 
-            saleToUpdate.SaleDate = sale.SaleDate;
+            saleToUpdate.OrderDate = sale.OrderDate;
             saleToUpdate.CustomerId = sale.CustomerId;
         }
 

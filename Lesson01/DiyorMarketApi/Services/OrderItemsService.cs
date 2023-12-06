@@ -3,87 +3,87 @@ using System.Security.Cryptography;
 
 namespace DiyorMarketApi.Services
 {
-    public class SaleItemsService
+    public class OrderItemsService
     {
-        private static List<SaleItem> SaleItems = new List<SaleItem>
+        private static List<OrderItem> SaleItems = new List<OrderItem>
         {
 
-            new SaleItem
+            new OrderItem
             {
                 Id = 1,
                 UnitPrice = RandomNumberGenerator.GetInt32(20_000,350_000),
                 Quantity = RandomNumberGenerator.GetInt32(15),
-                SaleId = RandomNumberGenerator.GetInt32(1,8),
+                OrderId = RandomNumberGenerator.GetInt32(1,8),
                 ProductId = RandomNumberGenerator.GetInt32(1,8)
             },
-            new SaleItem
+            new OrderItem
             {
                 Id = 2,
                 UnitPrice = RandomNumberGenerator.GetInt32(20_000,350_000),
                 Quantity = RandomNumberGenerator.GetInt32(15),
-                SaleId = RandomNumberGenerator.GetInt32(1,8),
+                OrderId = RandomNumberGenerator.GetInt32(1,8),
                 ProductId = RandomNumberGenerator.GetInt32(1,8)
             },
-            new SaleItem
+            new OrderItem
             {
                 Id = 3,
                 UnitPrice = RandomNumberGenerator.GetInt32(20_000,350_000),
                 Quantity = RandomNumberGenerator.GetInt32(15),
-                SaleId = RandomNumberGenerator.GetInt32(1,8),
+                OrderId = RandomNumberGenerator.GetInt32(1,8),
                 ProductId = RandomNumberGenerator.GetInt32(1,8)
             },
-            new SaleItem
+            new OrderItem
             {
                 Id = 4,
                 UnitPrice = RandomNumberGenerator.GetInt32(20_000,350_000),
                 Quantity = RandomNumberGenerator.GetInt32(15),
-                SaleId = RandomNumberGenerator.GetInt32(1,8),
+                OrderId = RandomNumberGenerator.GetInt32(1,8),
                 ProductId = RandomNumberGenerator.GetInt32(1,8)
             },
-            new SaleItem
+            new OrderItem
             {
                 Id = 5,
                 UnitPrice = RandomNumberGenerator.GetInt32(20_000,350_000),
                 Quantity = RandomNumberGenerator.GetInt32(15),
-                SaleId = RandomNumberGenerator.GetInt32(1,8),
+                OrderId = RandomNumberGenerator.GetInt32(1,8),
                 ProductId = RandomNumberGenerator.GetInt32(1,8)
             },
-            new SaleItem
+            new OrderItem
             {
                 Id = 6,
                 UnitPrice = RandomNumberGenerator.GetInt32(20_000,350_000),
                 Quantity = RandomNumberGenerator.GetInt32(15),
-                SaleId = RandomNumberGenerator.GetInt32(1,8),
+                OrderId = RandomNumberGenerator.GetInt32(1,8),
                 ProductId = RandomNumberGenerator.GetInt32(1,8)
             },
-            new SaleItem
+            new OrderItem
             {
                 Id = 7,
                 UnitPrice = RandomNumberGenerator.GetInt32(20_000,350_000),
                 Quantity = RandomNumberGenerator.GetInt32(15),
-                SaleId = RandomNumberGenerator.GetInt32(1,8),
+                OrderId = RandomNumberGenerator.GetInt32(1,8),
                 ProductId = RandomNumberGenerator.GetInt32(1,8)
             },
-            new SaleItem
+            new OrderItem
             {
                 Id = 8,
                 UnitPrice = RandomNumberGenerator.GetInt32(20_000,350_000),
                 Quantity = RandomNumberGenerator.GetInt32(15),
-                SaleId = RandomNumberGenerator.GetInt32(1,8),
+                OrderId = RandomNumberGenerator.GetInt32(1,8),
                 ProductId = RandomNumberGenerator.GetInt32(1,8)
             },
         };
 
-        public static List<SaleItem> GetSaleItems()
+        public static List<OrderItem> GetSaleItems()
             => SaleItems;
 
-        public static SaleItem? GetSaleitem(int id)
+        public static OrderItem? GetSaleitem(int id)
             => SaleItems.FirstOrDefault(x => x.Id == id);
 
-        public static void Create(SaleItem saleItem)
+        public static void Create(OrderItem saleItem)
             => SaleItems.Add(saleItem);
 
-        public static void Update(SaleItem saleItem)
+        public static void Update(OrderItem saleItem)
         {
             var saleItemToUpdate = SaleItems.FirstOrDefault(x => x.Id == saleItem.Id);
 
@@ -94,7 +94,7 @@ namespace DiyorMarketApi.Services
 
             saleItemToUpdate.Quantity = saleItem.Quantity;
             saleItemToUpdate.UnitPrice = saleItem.UnitPrice;
-            saleItemToUpdate.SaleId = saleItem.SaleId;
+            saleItemToUpdate.OrderId = saleItem.OrderId;
             saleItemToUpdate.ProductId = saleItem.ProductId;
         }
 

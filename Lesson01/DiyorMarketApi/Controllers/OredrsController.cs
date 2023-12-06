@@ -6,43 +6,43 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DiyorMarketApi.Controllers
 {
-    [Route("api/sales")]
+    [Route("api/orders")]
     [ApiController]
-    public class SalesController : ControllerBase
+    public class OredrsController : ControllerBase
     {
         // GET: api/<SalesController>
         [HttpGet]
-        public IEnumerable<Sale> Get()
+        public IEnumerable<Order> Get()
         {
-            return SalesService.GetSales();
+            return OrdersService.GetSales();
         }
 
         // GET api/<SalesController>/5
         [HttpGet("{id}")]
-        public Sale Get(int id)
+        public Order Get(int id)
         {
-            return SalesService.GetSale(id);
+            return OrdersService.GetSale(id);
         }
 
         // POST api/<SalesController>
         [HttpPost]
-        public void Post([FromBody] Sale sale)
+        public void Post([FromBody] Order sale)
         {
-            SalesService.Create(sale);
+            OrdersService.Create(sale);
         }
 
         // PUT api/<SalesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Sale sale)
+        public void Put(int id, [FromBody] Order sale)
         {
-            SalesService.Update(sale);
+            OrdersService.Update(sale);
         }
 
         // DELETE api/<SalesController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            SalesService.Delete(id);
+            OrdersService.Delete(id);
         }
     }
 }

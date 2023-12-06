@@ -1,9 +1,9 @@
 ﻿namespace DiyorMarketApi.Models
 {
-    public class Sale
+    public class Order
     {
         public int Id { get; set; }
-        public DateTime SaleDate { get; set; }
+        public DateTime OrderDate { get; set; }
 
         public int CustomerId { get; set; }
     }
