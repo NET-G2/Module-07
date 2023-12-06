@@ -1,7 +1,9 @@
-﻿using DiyorMarketApi.Models;
+﻿using AutoMapper;
+using DiyorMarket.Domain.DTOs.Category;
+using DiyorMarket.Domain.DTOs.Product;
+using DiyorMarketApi.Models;
 using DiyorMarketApi.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.Common;
 
 namespace DiyorMarketApi.Controllers
 {
@@ -9,8 +11,15 @@ namespace DiyorMarketApi.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
+        private readonly IMapper _mapper;
+
+        public CategoriesController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
         [HttpGet]
-        public ActionResult<IEnumerable<Category>> Get()
+        public ActionResult<IEnumerable<CategoryDto>> Get()
         {
             try
             {
@@ -26,7 +35,7 @@ namespace DiyorMarketApi.Controllers
         }
 
         [HttpGet("{id}", Name = "GetCategoryById")]
-        public ActionResult<Category> Get(int id)
+        public ActionResult<CategoryDto> Get(int id)
         {
             try
             {
@@ -47,7 +56,7 @@ namespace DiyorMarketApi.Controllers
         }
 
         [HttpGet("{id}/products")]
-        public ActionResult<Product> GetProductsByCategoryId(int id)
+        public ActionResult<ProductDto> GetProductsByCategoryId(int id)
         {
             try
             {
@@ -65,11 +74,13 @@ namespace DiyorMarketApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] Category category)
+        public ActionResult Post([FromBody] CategoryForCreateDto category)
         {
             try
             {
-                CategoriesService.Create(category);
+                var categoryEntity = _mapper.Map<Category>(category);
+
+                CategoriesService.Create(categoryEntity);
 
                 return StatusCode(201);
             }
@@ -81,7 +92,7 @@ namespace DiyorMarketApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Category category)
+        public ActionResult Put(int id, [FromBody] CategoryForUpdateDto category)
         {
             if (id != category.Id)
             {
@@ -91,7 +102,8 @@ namespace DiyorMarketApi.Controllers
 
             try
             {
-                CategoriesService.Update(category);
+                var categoryEntity = _mapper.Map<Category>(category);
+                CategoriesService.Update(categoryEntity);
 
                 return NoContent();
             }

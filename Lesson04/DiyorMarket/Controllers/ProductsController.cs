@@ -1,8 +1,8 @@
 ﻿using DiyorMarket.Api.Interfaces;
 using DiyorMarketApi.Models;
+using DiyorMarketApi.Services;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using ProductsService = DiyorMarket.Api.ProductsService;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -39,6 +39,7 @@ namespace DiyorMarketApi.Controllers
             if (product is null)
             {
                 _logger.LogError($"Product with id: {id} not found.");
+                _logger.LogCritical("Database is down!!!");
                 return NotFound($"Product with id: {id} does not exist.");
             }
 
