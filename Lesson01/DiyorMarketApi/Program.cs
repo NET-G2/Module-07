@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.StaticFiles;
+using Serilog;
 
 namespace DiyorMarketApi
 {
@@ -9,6 +10,14 @@ namespace DiyorMarketApi
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Host.UseSerilog();
+            // Add services to the container.
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Warning()
+                .WriteTo.Console()
+                .WriteTo.File("logs/logs.txt", rollingInterval: RollingInterval.Day)
+                .WriteTo.File("logs/error_.txt", Serilog.Events.LogEventLevel.Error, rollingInterval: RollingInterval.Day)
+                .CreateLogger();
 
             builder.Services.AddControllers()
                 .AddXmlSerializerFormatters();
@@ -28,7 +37,6 @@ namespace DiyorMarketApi
             }
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

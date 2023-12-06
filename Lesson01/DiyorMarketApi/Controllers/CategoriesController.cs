@@ -1,5 +1,6 @@
 ﻿using DiyorMarketApi.Models;
 using DiyorMarketApi.Services;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DiyorMarketApi.Controllers
@@ -45,6 +46,34 @@ namespace DiyorMarketApi.Controllers
         {
             CategoriesService.Update(category);
         }
+
+        [HttpPatch("{id}")]
+        //public ActionResult PartiallyUpdateCategory(
+        //    int id,
+        //    JsonPatchDocument<Category> jsonPatch)
+        //{
+        //    var category = CategoriesService.GetCategory(id);
+
+        //    if (category is null)
+        //    {
+        //        return NotFound($"Product with id: {id} does not exist.");
+        //    }
+        
+        //    var productToPatch = new Product()
+        //    {
+        //        Name = category.Name,
+        //        Price = category.Price,
+        //        CategoryId = category.CategoryId,
+        //    };
+
+        //    jsonPatch.ApplyTo(categoryToPatch, ModelState);
+
+        //    category.Name = productToPatch.Name;
+        //    category.Price = productToPatch.Price;
+        //    category.CategoryId = productToPatch.CategoryId;
+
+        //    return NoContent();
+        //}
 
         // DELETE api/<CategoriesController>/5
         [HttpDelete("{id}")]
