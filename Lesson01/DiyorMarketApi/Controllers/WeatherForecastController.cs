@@ -19,7 +19,7 @@ namespace DiyorMarketApi.Controllers
             "Sweltering", 
             "Scorching"
         };
-
+        
         private readonly ILogger<WeatherForecastController> _logger;
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)

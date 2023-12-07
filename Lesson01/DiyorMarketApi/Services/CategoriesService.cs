@@ -4,7 +4,7 @@ namespace DiyorMarketApi.Services
 {
     public class CategoriesService
     {
-        private static List<Category> Categories = new List<Category>
+            static List<Category> Categories = new List<Category>
         {
             new Category
             {
@@ -22,6 +22,7 @@ namespace DiyorMarketApi.Services
                 Name = "Food",
             },
         };
+       
     
 
         public static List<Category> GetCategories()
@@ -29,6 +30,7 @@ namespace DiyorMarketApi.Services
 
         public static Category? GetCategory(int id)
             => Categories.FirstOrDefault(x => x.Id == id);
+      
 
         public static void Create(Category category)
             => Categories.Add(category);

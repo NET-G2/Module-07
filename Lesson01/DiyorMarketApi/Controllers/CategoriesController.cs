@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DiyorMarketApi.Controllers
 {
-    [Route("api/categoriesD")]
+    [Route("api/categories")]
     [ApiController]
     public class CategoriesController : ControllerBase
     {
@@ -30,6 +30,19 @@ namespace DiyorMarketApi.Controllers
 
             return category;
         }
+        [HttpGet("{id}/products")]
+        public ActionResult<Product> GetResult(int id)
+        {
+            var products = ProductsService.GetProductsByCategoryId(id);
+
+            if (products == null || !products.Any())
+            {
+                return NotFound($"No products found in the category with ID: {id}");
+            }
+
+            return Ok(products);
+        }
+
 
         // POST api/<CategoriesController>
         [HttpPost]

@@ -49,6 +49,8 @@ namespace DiyorMarketApi.Services
 
         public static Product? GetProduct(int id)
             => Products.FirstOrDefault(x => x.Id == id);
+        public static List<Product>GetProductsByCategoryId(int categoryId)
+            =>Products.Where(x=>x.CategoryId==categoryId).ToList();
 
         public static void Create(Product product)
             => Products.Add(product);
