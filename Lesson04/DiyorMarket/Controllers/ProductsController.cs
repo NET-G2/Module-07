@@ -1,4 +1,4 @@
-﻿using DiyorMarketApi.Models;
+﻿using DiyorMarket.Domain.Entities;
 using DiyorMarketApi.Services;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;

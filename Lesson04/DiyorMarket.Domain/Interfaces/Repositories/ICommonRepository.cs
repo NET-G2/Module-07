@@ -4,6 +4,12 @@
     {
         public IProductRepository Product { get; }
         public ICategoryRepository Category { get; }
+        public ICustomerRepository Customer { get; }
+        public ISupplierRepository Supplier { get; }
+        public ISupplyRepository Supply { get; }
+        public ISupplyItemRepository SupplyItem { get; }
+        public ISaleRepository Sale { get; }
+        public ISaleItemRepository  SaleItem { get; }
 
         public Task<int> SaveChangesAsync();
     }

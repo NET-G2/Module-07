@@ -32,4 +32,8 @@
     <ProjectReference Include="..\DiyorMarket.Infrastructure\DiyorMarket.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

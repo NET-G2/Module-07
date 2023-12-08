@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using DiyorMarket.Domain.DTOs.Category;
 using DiyorMarket.Domain.DTOs.Product;
-using DiyorMarketApi.Models;
+using DiyorMarket.Domain.Entities;
 using DiyorMarketApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
