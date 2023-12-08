@@ -11,7 +11,8 @@ namespace DiyorMarket.Domain.DTOs.Customer
         string Name,
         int Age,
         string PhoneNumber,
-        string Email
+        string Email,
+        ICollection<CustomerDtOs> Customers
         );
     
 }

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace DiyorMarket.Domain.DTOs.SupplyItem
 {
-    internal class SupplyItemForCreateDTOs
-    {
-    }
+    public record SupplyItemForCreateDTOs(
+        int Quantity,
+        decimal UnitPrice,
+        int ProductId,
+        int SupplyId
+        );
 }

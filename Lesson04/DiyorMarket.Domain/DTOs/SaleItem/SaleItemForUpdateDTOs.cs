@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace DiyorMarket.Domain.DTOs.SaleItem
 {
-    internal class SaleItemForUpdateDTOs
-    {
-    }
+    public record SaleItemForUpdateDTOs(
+        int Id,
+        int Quantity,
+        decimal UnitPrice,
+        int ProductId,
+        int SaleId
+        );
 }

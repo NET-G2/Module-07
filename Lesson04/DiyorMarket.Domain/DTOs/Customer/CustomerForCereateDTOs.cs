@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace DiyorMarket.Domain.DTOs.Customer
 {
-    internal class CustomerForCereateDTOs
-    {
-    }
+    public record CustomerForCereateDTOs(
+        string FirstName,
+        string LastName,
+        string Email,
+        string PhoneNumber
+        );
 }

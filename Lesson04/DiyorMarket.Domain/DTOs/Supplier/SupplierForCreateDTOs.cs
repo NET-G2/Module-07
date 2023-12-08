@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace DiyorMarket.Domain.DTOs.Supplier
 {
-    internal class SupplierForCreateDTOs
-    {
-    }
+    public record SupplierForCreateDTOs(
+        string FirstName,
+        string LastName,
+        string PhoneNumber,
+        string Company
+        );
 }

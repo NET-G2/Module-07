@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DiyorMarket.Domain.DTOs.Supply
 {
-    internal class SupplyForCreateDTOs
-    {
-    }
+    public record SupplyForCreateDTOs(
+        DateTime SupplyDate,
+        int SupplierId
+        );
 }

@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace DiyorMarket.Domain.DTOs.Product
 {
-    internal class ProductForUpdate
-    {
-    }
+    public record ProductForUpdateDTOs(
+        int Id,
+        string Name,
+        string Description,
+        decimal Price,
+        DateTime ExpireDate,
+        int CategoryId
+        );
 }

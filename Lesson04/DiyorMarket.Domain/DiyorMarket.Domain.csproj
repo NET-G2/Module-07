@@ -25,12 +25,4 @@
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.1-dev-00968" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\SaleItem\" />
-    <Folder Include="DTOs\Sale\" />
-    <Folder Include="DTOs\SupplyItem\" />
-    <Folder Include="DTOs\Supply\" />
-    <Folder Include="DTOs\Supplier\" />
-  </ItemGroup>
-
 </Project>
