@@ -13,7 +13,7 @@ namespace DiyorMarketApi.Controllers
     {
         private readonly ILogger<ProductsController> _logger;
 
-        public ProductsController( ILogger<ProductsController> logger)
+        public ProductsController(ILogger<ProductsController> logger)
         {
             _logger = logger;
         }
@@ -32,7 +32,7 @@ namespace DiyorMarketApi.Controllers
         {
             _logger.LogInformation($"Getting product with id: {id}");
             var product = ProductsService.GetProduct(id);
-            
+
             if (product is null)
             {
                 _logger.LogError($"Product with id: {id} not found.");
@@ -57,7 +57,7 @@ namespace DiyorMarketApi.Controllers
 
                 return StatusCode(201, product);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500);
             }
@@ -72,7 +72,7 @@ namespace DiyorMarketApi.Controllers
 
         [HttpPatch("{id}")]
         public ActionResult PartiallyUpdateProduct(
-            int id, 
+            int id,
             JsonPatchDocument<Product> jsonPatch)
         {
             var product = ProductsService.GetProduct(id);

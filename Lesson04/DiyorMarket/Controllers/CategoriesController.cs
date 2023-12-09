@@ -1,7 +1,7 @@
-﻿using AutoMapper;
-using DiyorMarket.Domain.DTOs.Category;
+﻿using DiyorMarket.Domain.DTOs.Category;
 using DiyorMarket.Domain.DTOs.Product;
-using DiyorMarket.Domain.Entities;
+using DiyorMarket.Domain.Exceptions;
+using DiyorMarket.Domain.Interfaces.Services;
 using DiyorMarketApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,23 +11,23 @@ namespace DiyorMarketApi.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly IMapper _mapper;
+        private readonly ICategoryService _categoryService;
 
-        public CategoriesController(IMapper mapper)
+        public CategoriesController(ICategoryService categoryService)
         {
-            _mapper = mapper;
+            _categoryService = categoryService ?? throw new ArgumentNullException(nameof(categoryService));
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<CategoryDto>> Get()
+        public async Task<ActionResult<IEnumerable<CategoryDto>>> GetCategoriesAsync()
         {
             try
             {
-                var categories = CategoriesService.GetCategories();
+                var categories = await _categoryService.GetCategoriesAsync();
 
                 return Ok(categories);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500,
                     $"There was error returning categories. {ex.Message}");
@@ -35,11 +35,11 @@ namespace DiyorMarketApi.Controllers
         }
 
         [HttpGet("{id}", Name = "GetCategoryById")]
-        public ActionResult<CategoryDto> Get(int id)
+        public async Task<ActionResult<CategoryDto>> GetCategoryById(int id)
         {
             try
             {
-                var category = CategoriesService.GetCategory(id);
+                var category = await _categoryService.GetCategoryByIdAsync(id);
 
                 if (category is null)
                 {
@@ -48,7 +48,11 @@ namespace DiyorMarketApi.Controllers
 
                 return Ok(category);
             }
-            catch(Exception ex)
+            catch (EntityNotFoundException)
+            {
+                return NotFound($"Product with id: {id} not found.");
+            }
+            catch (Exception ex)
             {
                 return StatusCode(500,
                     $"There was error getting category with id: {id}. {ex.Message}");
@@ -66,7 +70,11 @@ namespace DiyorMarketApi.Controllers
 
                 return Ok(filteredProducts);
             }
-            catch(Exception ex)
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound($"Product with id: {id} not found.");
+            }
+            catch (Exception ex)
             {
                 return StatusCode(500,
                     $"There was an error returning products for category: {id}. {ex.Message}");
@@ -74,25 +82,23 @@ namespace DiyorMarketApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] CategoryForCreateDto category)
+        public async Task<ActionResult<CategoryDto>> Post(CategoryForCreateDto category)
         {
             try
             {
-                var categoryEntity = _mapper.Map<Category>(category);
+                var createdCategory = await _categoryService.CreateCategoryAsync(category);
 
-                CategoriesService.Create(categoryEntity);
-
-                return StatusCode(201);
+                return Created("", createdCategory);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return StatusCode(500, 
+                return StatusCode(500,
                     $"There was an error creating new category. {ex.Message}");
             }
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] CategoryForUpdateDto category)
+        public async Task<ActionResult> UpdateCategoryAsync([FromRoute] int id, [FromBody] CategoryForUpdateDto category)
         {
             if (id != category.Id)
             {
@@ -102,32 +108,31 @@ namespace DiyorMarketApi.Controllers
 
             try
             {
-                var categoryEntity = _mapper.Map<Category>(category);
-                CategoriesService.Update(categoryEntity);
+                await _categoryService.UpdateCategoryAsync(category);
 
                 return NoContent();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
-                return StatusCode(500, 
+                return StatusCode(500,
                     $"There was an error updating category with id: {id}. {ex.Message}");
 
             }
         }
 
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> DeleteCategoryAsync(int id)
         {
             try
             {
-                CategoriesService.Delete(id);
+                await _categoryService.DeleteCategoryAsync(id);
 
                 return NoContent();
             }
             catch (Exception ex)
             {
-                return StatusCode(500, 
+                return StatusCode(500,
                     $"There was an error deleting category with id: {id}. {ex.Message}");
             }
         }

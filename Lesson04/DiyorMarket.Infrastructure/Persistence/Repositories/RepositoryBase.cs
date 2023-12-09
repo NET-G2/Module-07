@@ -14,9 +14,9 @@ namespace DiyorMarket.Infrastructure.Persistence.Repositories
             _context = context;
         }
 
-        public async Task<T> CreateAsync(T entity)
+        public T CreateAsync(T entity)
         {
-            var createdEntity = await _context.Set<T>().AddAsync(entity);
+            var createdEntity = _context.Set<T>().Add(entity);
 
             return createdEntity.Entity;
         }

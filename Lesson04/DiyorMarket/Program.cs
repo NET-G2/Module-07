@@ -16,6 +16,7 @@ builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
 builder.Services.ConfigureLogger();
 builder.Services.ConfigureRepositories();
 builder.Services.ConfigureDatabaseContext();
+builder.Services.ConfigureServices();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();

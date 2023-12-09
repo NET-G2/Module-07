@@ -27,6 +27,19 @@ namespace DiyorMarket.Infrastructure.Persistence.Repositories
                 return _product;
             }
         }
+
+        public ICustomerRepository Customer => throw new NotImplementedException();
+
+        public ISupplierRepository Supplier => throw new NotImplementedException();
+
+        public ISupplyRepository Supply => throw new NotImplementedException();
+
+        public ISupplyItemRepository SupplyItem => throw new NotImplementedException();
+
+        public ISaleRepository Sale => throw new NotImplementedException();
+
+        public ISaleItemRepository SaleItem => throw new NotImplementedException();
+
         public CommonRepository(DiyorMarketDbContext context)
         {
             _context = context;

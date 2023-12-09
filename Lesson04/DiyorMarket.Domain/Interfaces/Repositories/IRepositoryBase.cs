@@ -6,7 +6,7 @@ namespace DiyorMarket.Domain.Interfaces.Repositories
     {
         Task<IEnumerable<T>> FindAllAsync();
         Task<T> FindByIdAsync(int id);
-        Task<T> CreateAsync(T entity);
+        T CreateAsync(T entity);
         void UpdateAsync(T entity);
         Task DeleteAsync(int id);
     }

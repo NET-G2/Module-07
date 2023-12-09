@@ -1,6 +1,8 @@
 ﻿using DiyorMarket.Domain.Interfaces.Repositories;
+using DiyorMarket.Domain.Interfaces.Services;
 using DiyorMarket.Infrastructure.Persistence;
 using DiyorMarket.Infrastructure.Persistence.Repositories;
+using DiyorMarket.Services;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -32,7 +34,14 @@ namespace DiyorMarket.Extensions
         public static IServiceCollection ConfigureDatabaseContext(this IServiceCollection services)
         {
             services.AddDbContext<DiyorMarketDbContext>(options =>
-                options.UseSqlServer("DiyorMarketConnectionString"));
+                options.UseSqlServer("Data Source=DESKTOP-11M5EOQ;Initial Catalog=DiyorMarket;Integrated Security=True;TrustServerCertificate=True;"));
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureServices(this IServiceCollection services)
+        {
+            services.AddScoped<ICategoryService, CategoryService>();
 
             return services;
         }

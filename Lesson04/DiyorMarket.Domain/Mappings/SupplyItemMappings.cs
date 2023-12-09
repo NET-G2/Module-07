@@ -1,17 +1,12 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiyorMarket.Domain.Mappings
 {
     public class SupplyItemMappings : Profile
     {
-        public SupplyItemMappings() 
+        public SupplyItemMappings()
         {
-            
+
         }
     }
 }

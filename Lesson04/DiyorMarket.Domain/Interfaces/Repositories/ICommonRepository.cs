@@ -9,7 +9,7 @@
         public ISupplyRepository Supply { get; }
         public ISupplyItemRepository SupplyItem { get; }
         public ISaleRepository Sale { get; }
-        public ISaleItemRepository  SaleItem { get; }
+        public ISaleItemRepository SaleItem { get; }
 
         public Task<int> SaveChangesAsync();
     }
