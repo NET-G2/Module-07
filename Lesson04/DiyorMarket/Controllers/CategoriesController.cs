@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using DiyorMarket.Domain.DTOs.Category;
 using DiyorMarket.Domain.DTOs.Product;
-using DiyorMarketApi.Models;
+using DiyorMarket.Domain.Entities;
+using DiyorMarket.Domain.Interfaces.Repositories;
 using DiyorMarketApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -90,7 +91,7 @@ namespace DiyorMarketApi.Controllers
                     $"There was an error creating new category. {ex.Message}");
             }
         }
-
+        
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] CategoryForUpdateDto category)
         {

@@ -4,10 +4,10 @@ namespace DiyorMarket.Domain.Interfaces.Repositories
 {
     public interface IRepositoryBase<T> where T : EntityBase
     {
-        Task<IEnumerable<T>> FindAllAsync();
-        Task<T> FindByIdAsync(int id);
-        Task<T> CreateAsync(T entity);
-        void UpdateAsync(T entity);
-        Task DeleteAsync(int id);
+        IEnumerable<T> FindAll();
+        T FindById(int id);
+        T Create(T entity);
+        void Update(T entity);
+        void Delete(int id);
     }
 }

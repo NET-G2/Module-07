@@ -15,6 +15,14 @@ namespace DiyorMarket.Infrastructure.Persistence.Configurations
                 .WithMany(c => c.Products)
                 .HasForeignKey(p => p.CategoryId);
 
+            builder.HasMany(p => p.SaleItems)
+                .WithOne(s => s.Product)
+                .HasForeignKey(p => p.ProductId);
+
+            builder.HasMany(p => p.SupplyItems)
+                .WithOne(si => si.Product)
+                .HasForeignKey(p => p.ProductId);
+
             builder.Property(p => p.Name)
                 .HasMaxLength(255)
                 .IsRequired();

@@ -1,5 +1,4 @@
-﻿using DiyorMarket.Api.Interfaces;
-using DiyorMarketApi.Models;
+﻿using DiyorMarket.Domain.Entities;
 using DiyorMarketApi.Services;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -12,12 +11,10 @@ namespace DiyorMarketApi.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IProductService _service;
         private readonly ILogger<ProductsController> _logger;
 
-        public ProductsController(IProductService productService, ILogger<ProductsController> logger)
+        public ProductsController(ILogger<ProductsController> logger)
         {
-            _service = productService;
             _logger = logger;
         }
 

@@ -13,6 +13,12 @@ namespace DiyorMarket.Extensions
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICommonRepository, CommonRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ISaleRepository, SaleRepository>();
+            services.AddScoped<ISaleItemRepository, SaleItemRepository>();
+            services.AddScoped<ISupplierRepository, SupplierRepository>();
+            services.AddScoped<ISupplyRepository, SupplyRepository>();
+            services.AddScoped<ISupplyItemRepository, SupplyItemRepository>();
 
             return services;
         }
@@ -31,8 +37,10 @@ namespace DiyorMarket.Extensions
 
         public static IServiceCollection ConfigureDatabaseContext(this IServiceCollection services)
         {
+            var builder = WebApplication.CreateBuilder();
+
             services.AddDbContext<DiyorMarketDbContext>(options =>
-                options.UseSqlServer(""));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DiyorMaeketConection")));
 
             return services;
         }

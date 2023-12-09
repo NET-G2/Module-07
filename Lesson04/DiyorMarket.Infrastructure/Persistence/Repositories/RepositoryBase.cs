@@ -14,33 +14,33 @@ namespace DiyorMarket.Infrastructure.Persistence.Repositories
             _context = context;
         }
 
-        public async Task<T> CreateAsync(T entity)
+        public T Create(T entity)
         {
-            var createdEntity = await _context.Set<T>().AddAsync(entity);
+            var createdEntity = _context.Set<T>().Add(entity);
 
             return createdEntity.Entity;
         }
 
-        public async Task DeleteAsync(int id)
+        public void Delete(int id)
         {
-            var entity = await FindByIdAsync(id);
+            var entity = FindById(id);
 
             _context.Set<T>().Remove(entity);
         }
 
-        public async Task<IEnumerable<T>> FindAllAsync()
+        public IEnumerable<T> FindAll()
         {
-            var entities = await _context.Set<T>()
+            var entities = _context.Set<T>()
                 .AsNoTracking()
-                .ToListAsync();
+                .ToList();
 
             return entities;
         }
 
-        public async Task<T> FindByIdAsync(int id)
+        public T FindById(int id)
         {
-            var entity = await _context.Set<T>()
-                .FindAsync(id);
+            var entity = _context.Set<T>()
+                .Find(id);
 
             if (entity is null)
             {
@@ -51,7 +51,7 @@ namespace DiyorMarket.Infrastructure.Persistence.Repositories
             return entity;
         }
 
-        public void UpdateAsync(T entity)
+        public void Update(T entity)
         {
             _context.Set<T>().Update(entity);
         }

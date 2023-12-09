@@ -11,5 +11,8 @@ namespace DiyorMarket.Domain.Entities
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+
+        public virtual ICollection<SaleItem> SaleItems { get; set; }
+        public virtual ICollection<SupplyItem> SupplyItems { get; set; }
     }
 }
