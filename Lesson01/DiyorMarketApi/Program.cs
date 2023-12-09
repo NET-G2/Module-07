@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.StaticFiles;
+using Serilog;
+
 namespace DiyorMarketApi
 {
     public class Program
@@ -6,12 +9,29 @@ namespace DiyorMarketApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
+           builder.Host.UseSerilog();
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Warning()
+                .WriteTo.Console()
+                .WriteTo.File("logs/logs.txt", rollingInterval: RollingInterval.Day)
+                .WriteTo.File("logs/error_.txt", Serilog.Events.LogEventLevel.Error, rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+
+
+            builder.Services.AddControllers()
+                .AddXmlSerializerFormatters()
+                .AddNewtonsoftJson();
+
+            builder.Services.AddLogging();
+
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
+
 
             var app = builder.Build();
 
