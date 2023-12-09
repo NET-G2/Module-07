@@ -1,3 +1,4 @@
+using AutoMapper;
 using DiyorMarket.Extensions;
 using Microsoft.AspNetCore.StaticFiles;
 using Serilog;
