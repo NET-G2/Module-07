@@ -1,0 +1,158 @@
+﻿using AutoMapper;
+using DiyorMarket.Domain.DTOs.Category;
+using DiyorMarket.Domain.Entities;
+using DiyorMarket.Domain.Interfaces.Repositories;
+using DiyorMarket.Domain.Interfaces.Services;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Data.Common;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DiyorMarket.Services.ServicesForEntities
+{
+    public class CategoryService : ICategoryService
+    {
+        private readonly ICommonRepository _repository;
+        private readonly  ILogger<CategoryService> _logger;
+        private readonly IMapper _mapper;
+
+        public CategoryService(ICommonRepository repository, ILogger<CategoryService> logger, IMapper mapper)
+        {
+            _repository = repository;
+            _logger = logger;
+            _mapper = mapper;
+        }
+
+        public IEnumerable<CategoryDto> GetCategories()
+        {
+            try
+            {
+                var categories = _repository.Category.FindAll();
+
+                var categoryDtos = _mapper.Map<IEnumerable<CategoryDto>>(categories);
+
+                return categoryDtos;
+            }
+            catch (AutoMapperMappingException ex)
+            {
+                _logger.LogError($"There was an error mapping between Category and CategoryDto", ex.Message);
+                throw;
+            }
+            catch (DbException ex)
+            {
+                _logger.LogError("Database error occured while fetching categories.", ex.Message);
+                throw;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Something went wrong while fetching categories.", ex.Message);
+                throw;
+            }
+        }
+
+        public CategoryDto? GetCategoryById(int id)
+        {
+            try
+            {
+                var category = _repository.Category.FindById(id);
+
+                var categoryDto = _mapper.Map<CategoryDto>(category);
+
+                return categoryDto;
+            }
+            catch (AutoMapperMappingException ex)
+            {
+                _logger.LogError($"There was an error mapping between Category and CategoryDto", ex.Message);
+                throw;
+            }
+            catch (DbException ex)
+            {
+                _logger.LogError($"Database error occured while fetching category with id: {id}.", ex.Message);
+                throw;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong while fetching category with id: {id}.", ex.Message);
+                throw;
+            }
+        }
+
+        public CategoryDto CreateCategory(CategoryForCreateDto categoryToCreate)
+        {
+            try
+            {
+                var categoryEntity = _mapper.Map<Category>(categoryToCreate);
+
+                var createdCategory = _repository.Category.Create(categoryEntity);
+                _repository.SaveChanges();
+
+                var categoryDto = _mapper.Map<CategoryDto>(createdCategory);
+
+                return categoryDto;
+            }
+            catch (AutoMapperMappingException ex)
+            {
+                _logger.LogError($"There was an error mapping between Category and CategoryDto", ex.Message);
+                throw;
+            }
+            catch (DbException ex)
+            {
+                _logger.LogError("Database error occured while creating new category.", ex.Message);
+                throw;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Something went wrong while creating new category.", ex.Message);
+                throw;
+            }
+        }
+
+        public void UpdateCategory(CategoryForUpdateDto categoryToUpdate)
+        {
+            try
+            {
+                var categoryEntity = _mapper.Map<Category>(categoryToUpdate);
+
+                _repository.Category.Update(categoryEntity);
+                _repository.SaveChanges();
+            }
+            catch (AutoMapperMappingException ex)
+            {
+                _logger.LogError($"There was an error mapping between Category and CategoryDto", ex.Message);
+                throw;
+            }
+            catch (DbException ex)
+            {
+                _logger.LogError("Database error occured while updating category.", ex.Message);
+                throw;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Something went wrong while updating category.", ex.Message);
+                throw;
+            }
+        }
+
+        public void DeleteCategory(int id)
+        {
+            try
+            {
+                _repository.Category.Delete(id);
+                _repository.SaveChanges();
+            }
+            catch (DbException ex)
+            {
+                _logger.LogError($"Database error occured while deleting category with id: {id}.", ex.Message);
+                throw;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong while deleting category with id: {id}.", ex.Message);
+                throw;
+            }
+        }
+    }
+}

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiyorMarket.Domain.DTOs.Supply;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,6 @@ namespace DiyorMarket.Domain.DTOs.Supplier
         string Name,
         string PhoneNumber,
         string Company,
-        ICollection<SupplyDtos> Supplies
+        ICollection<SupplyDTOs> Supplies
         );
 }

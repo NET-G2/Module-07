@@ -11,6 +11,6 @@
         public ISaleRepository Sale { get; }
         public ISaleItemRepository  SaleItem { get; }
 
-        public Task<int> SaveChangesAsync();
+        public int SaveChanges();
     }
 }

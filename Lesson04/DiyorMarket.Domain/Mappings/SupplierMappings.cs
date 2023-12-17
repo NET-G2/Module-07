@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using DiyorMarket.Domain.DTOs.SaleItem;
+using DiyorMarket.Domain.DTOs.Supplier;
+using DiyorMarket.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +14,10 @@ namespace DiyorMarket.Domain.Mappings
     {
         public SupplierMappings() 
         {
-
+            CreateMap<Supplier, SupplierDTOs>();
+            CreateMap<SupplierDTOs, Supplier>();
+            CreateMap<SupplierForCreateDTOs, Supplier>();
+            CreateMap<SupplierForUpdateDTOs, Supplier>();
         }
     }
 }

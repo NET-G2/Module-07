@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DiyorMarket.Infrastructure.Persistence.Configurations
 {
-    internal class ProductEntityConfiguration : IEntityTypeConfiguration<Product>
+    public class ProductEntityConfiguration : IEntityTypeConfiguration<Product>
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
