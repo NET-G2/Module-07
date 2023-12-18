@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DiyorMarket.Views.CatalogPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Catalog">
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView>
+                <CollectionView ItemsLayout="VerticalList" ItemsSource="{Binding Products}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="15" />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    FontAttributes="Bold"
+                                    LineBreakMode="TailTruncation"
+                                    Text="{Binding Name}" />
+                                <Label
+                                    Grid.Row="1"
+                                    FontAttributes="Italic"
+                                    LineBreakMode="TailTruncation"
+                                    Text="{Binding Price}"
+                                    VerticalOptions="End" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+            <ActivityIndicator
+                HorizontalOptions="Center"
+                IsRunning="{Binding IsBusy}"
+                VerticalOptions="Center" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
