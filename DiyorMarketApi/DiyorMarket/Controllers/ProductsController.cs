@@ -3,12 +3,14 @@ using DiyorMarket.Domain.DTOs.Category;
 using DiyorMarket.Domain.DTOs.Product;
 using DiyorMarket.Domain.Entities;
 using DiyorMarket.Domain.Interfaces.Services;
+using DiyorMarket.Domain.Pagniation;
 using DiyorMarket.ResourceParameters;
 using DiyorMarket.Services;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -32,17 +34,13 @@ namespace DiyorMarketApi.Controllers
         public ActionResult<IEnumerable<ProductDto>> GetProductsAsync(
             [FromQuery] ProductResourceParameters productResourceParameters)
         {
-            try
-            {
-                var products = _productService.GetProducts(productResourceParameters);
+            var products = _productService.GetProducts(productResourceParameters);
 
-                return Ok(products);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500,
-                    $"There was error returning products. {ex.Message}");
-            }
+            var metaData = GetPaginationMetaData(products);
+
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(metaData));
+
+            return Ok(products);
         }
 
         // GET api/<ProductsController>/5
@@ -157,11 +155,24 @@ namespace DiyorMarketApi.Controllers
         {
             _productService.DeleteProduct(id);
         }
+
+        private PaginationMetaData GetPaginationMetaData(PaginatedList<ProductDto> products)
+        {
+            return new PaginationMetaData
+            {
+                TotalCount = products.TotalCount,
+                PageSize = products.PageSize,
+                CurrentPage = products.CurrentPage,
+                TotalPages = products.TotalPages,
+            };
+        }
     }
 
-    public class ProductParams
+    class PaginationMetaData
     {
-        public int Id { get; set; }
-        public int CategoryId { get; set; }
+        public int TotalCount { get; set; }
+        public int PageSize { get; set; }
+        public int CurrentPage { get; set; }
+        public int TotalPages { get; set; }
     }
 }

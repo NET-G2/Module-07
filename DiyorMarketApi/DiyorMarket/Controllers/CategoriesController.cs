@@ -2,11 +2,10 @@
 using DiyorMarket.Domain.DTOs.Product;
 using DiyorMarket.Domain.Interfaces.Services;
 using DiyorMarket.ResourceParameters;
-using DiyorMarket.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DiyorMarketApi.Controllers
-{
+namespace DiyorMarketApi.Controllers;
+
     [Route("api/categories")]
     [ApiController]
     public class CategoriesController : ControllerBase
@@ -76,4 +75,3 @@ namespace DiyorMarketApi.Controllers
             return NoContent();
         }
     }
-}

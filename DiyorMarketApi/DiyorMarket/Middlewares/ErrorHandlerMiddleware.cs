@@ -1,4 +1,6 @@
 ﻿using DiyorMarket.Domain.Exceptions;
+using DiyorMarket.Domain.Pagniation;
+using DiyorMarket.ResourceParameters;
 using System.Net;
 
 namespace DiyorMarket.Middlewares

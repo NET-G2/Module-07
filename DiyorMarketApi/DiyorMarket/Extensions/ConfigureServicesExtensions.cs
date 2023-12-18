@@ -27,6 +27,8 @@ namespace DiyorMarket.Extensions
             services.AddScoped<ISaleService, SaleService>();
             services.AddScoped<ISaleItemService, SaleItemService>();
             services.AddScoped<ISupplierService, SupplierService>();
+            services.AddScoped<ISupplyService, SupplyService>();
+            services.AddScoped<ISupplyItemService, SupplyItemService>();
 
             return services;
         }

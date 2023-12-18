@@ -1,10 +1,6 @@
-﻿using DiyorMarket.Domain.DTOs.Category;
-using DiyorMarket.Domain.DTOs.Product;
-using DiyorMarket.Domain.DTOs.Sale;
+﻿using DiyorMarket.Domain.DTOs.Sale;
 using DiyorMarket.Domain.DTOs.SaleItem;
 using DiyorMarket.Domain.Interfaces.Services;
-using DiyorMarket.Services;
-using DiyorMarketApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DiyorMarket.Controllers
