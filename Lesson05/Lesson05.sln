@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiyorMarket", "DiyorMarket\DiyorMarket.csproj", "{BA2C472D-3457-4875-A979-6F866CBB4178}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiyorMarket", "DiyorMarket\DiyorMarket.csproj", "{BA2C472D-3457-4875-A979-6F866CBB4178}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiyorMarket.Services", "DiyorMarket.Services\DiyorMarket.Services.csproj", "{D201C67B-A2F8-429C-9D6B-2D7B097AD6D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiyorMarket.Domain", "DiyorMarket.Domain\DiyorMarket.Domain.csproj", "{C6BDE068-E327-4DC6-A23F-6F3C73766DD4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiyorMarket.Infrastructure", "DiyorMarket.Infrastructure\DiyorMarket.Infrastructure.csproj", "{DF95351B-F2E1-40A2-8B88-C9BC9CBC3572}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{BA2C472D-3457-4875-A979-6F866CBB4178}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA2C472D-3457-4875-A979-6F866CBB4178}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA2C472D-3457-4875-A979-6F866CBB4178}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D201C67B-A2F8-429C-9D6B-2D7B097AD6D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D201C67B-A2F8-429C-9D6B-2D7B097AD6D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D201C67B-A2F8-429C-9D6B-2D7B097AD6D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D201C67B-A2F8-429C-9D6B-2D7B097AD6D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6BDE068-E327-4DC6-A23F-6F3C73766DD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6BDE068-E327-4DC6-A23F-6F3C73766DD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6BDE068-E327-4DC6-A23F-6F3C73766DD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6BDE068-E327-4DC6-A23F-6F3C73766DD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF95351B-F2E1-40A2-8B88-C9BC9CBC3572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF95351B-F2E1-40A2-8B88-C9BC9CBC3572}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF95351B-F2E1-40A2-8B88-C9BC9CBC3572}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF95351B-F2E1-40A2-8B88-C9BC9CBC3572}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

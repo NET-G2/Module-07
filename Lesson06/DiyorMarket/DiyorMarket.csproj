@@ -29,7 +29,6 @@
   <ItemGroup>
     <ProjectReference Include="..\DiyorMarket.Domain\DiyorMarket.Domain.csproj" />
     <ProjectReference Include="..\DiyorMarket.Infrastructure\DiyorMarket.Infrastructure.csproj" />
-    <ProjectReference Include="..\DiyorMarket.Services\DiyorMarket.Services.csproj" />
   </ItemGroup>
 
 </Project>
